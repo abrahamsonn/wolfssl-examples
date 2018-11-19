@@ -903,7 +903,10 @@ And we're done. We should now have a fully functional TLS client.
 * `server-tls-nonblocking`
 * `server-tls-threaded`
 
-
+Currently, `client-tls-str` is only capable of connecting to the example server
+application that is included with the wolfSSL library. The wolfSSL library must
+be built with `--enable-session-ticket`, and the server library must be run
+with the `-r` option.
 
 ## <a name="callback">Using callbacks</a>
 
