@@ -58,14 +58,15 @@ int main(int argc, char** argv)
     /* declare objects for session resuming */
     WOLFSSL*         sslRes;
 
-
     /* Check for proper calling convention */
     if (argc != 2) {
         printf("usage: %s <IPv4 address>\n", argv[0]);
         return 0;
     }
 
-
+#ifdef DEBUG_WOLFSSL
+    wolfSSL_Debugging_ON();
+#endif
 
     /* Initialize wolfSSL */
     wolfSSL_Init();
@@ -263,9 +264,8 @@ int main(int argc, char** argv)
     /* Print to stdout any data the server sends */
     printf("Server: %s\n", buff);
 
-
     /* Cleanup and return */
-    wolfSSL_free(ssl);      /* Free the wolfSSL object                  */
+    wolfSSL_free(sslRes);   /* Free the wolfSSL object                  */
     wolfSSL_CTX_free(ctx);  /* Free the wolfSSL context object          */
     wolfSSL_Cleanup();      /* Cleanup the wolfSSL environment          */
     close(sockfd);          /* Close the connection to the server       */
